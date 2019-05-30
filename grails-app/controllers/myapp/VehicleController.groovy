@@ -3,7 +3,9 @@ package myapp
 
 import grails.rest.*
 import grails.converters.*
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class VehicleController extends RestfulController {
     static responseFormats = ['json', 'xml']
     VehicleController() {
@@ -11,7 +13,7 @@ class VehicleController extends RestfulController {
     }
 
     def search(String q,Integer max){
-        println("String parameter is $q" );
+        println("String parameter is $q" )
         if(q) {
             def query = Vehicle.where {
                 name == q

@@ -10,19 +10,32 @@ class UrlMappings {
         put "/$controller/$id(.$format)?"(action:"update")
         patch "/$controller/$id(.$format)?"(action:"patch")
 
-        '/vehicles'(resources: 'vehicle') {
+
+        '/vehicles'(resources: 'vehicle'){
             collection {
-                '/search'(controller: 'vehicle', action: 'search')
+                '/search'( controller: 'vehicle' , action: 'search')
             }
         }
-        '/drivers'(resources: 'drivers') {
-            collection {
-                '/add'(controller: 'driver', action: 'add')
+
+        group('/api'){
+            '/hello'(controller:'hello',action:'index')
+            '/driver'(resources:'driver'){
+                collection {
+                    '/add'( controller: 'driver' , action: 'add')
+                }
             }
+            '/vehicles'(resources: 'vehicle'){
+                collection {
+                    '/search'( controller: 'vehicle' , action: 'search')
+                }
+            }
+
+
         }
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
+
     }
 }
